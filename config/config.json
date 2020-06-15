@@ -1,6 +1,6 @@
 {
   "development": {
-    "url": "mysql://root:password@localhost/booking_flow_wednesday",
+    "url": "mysql://username:password@localhost/databasename",
     "logging": true,
     "options": {
       "dialect": "mysql",
