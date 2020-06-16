@@ -73,10 +73,12 @@ validator.bookingRequest = {
     pickUp: joi
       .array()
       .ordered(joi.number().min(-90).max(90), joi.number().min(-180).max(180))
+      .required()
       .description("lat long here in array like [lat, long]"),
     dropOff: joi
       .array()
       .ordered(joi.number().min(-90).max(90), joi.number().min(-180).max(180))
+      .required()
       .description("lat long here in array like [lat,long]"),
     baseCharges: joi.number().required().min(0).description("base fair of selected ride type"),
     scheduleTime: joi.number().required().description("order time in milliseconds"),

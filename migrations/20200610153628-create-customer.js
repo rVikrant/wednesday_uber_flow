@@ -19,6 +19,7 @@ module.exports = {
           type: Sequelize.INTEGER(11),
           allowNull: false,
           primaryKey: true,
+          autoIncrement: true,
         },
         firstName: {
           field: "first_name",
@@ -33,6 +34,8 @@ module.exports = {
         email: {
           type: Sequelize.STRING(32),
           allowNull: false,
+          unique: true,
+          // index: true
         },
         phoneNo: {
           type: Sequelize.STRING(16),
@@ -62,7 +65,6 @@ module.exports = {
           field: "access_token",
           type: Sequelize.STRING(64),
           allowNull: true,
-          unique: true,
         },
 
         // status key
@@ -85,7 +87,8 @@ module.exports = {
         tableName: "users",
         timestamps: false,
       }
-    );
+    )
+    .then(() => {return queryInterface.addIndex('users', {unique: false, fields: ['status']})})
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("users");

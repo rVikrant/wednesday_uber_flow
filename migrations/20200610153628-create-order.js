@@ -32,6 +32,7 @@ module.exports = {
             type: Sequelize.INTEGER(11),
             allowNull: false,
             primaryKey: true,
+            autoIncrement: true,
           },
           orderNo: {
             field: "order_no",
@@ -154,6 +155,7 @@ module.exports = {
           timestamps: false,
         }
       )
+      .then(() => {return queryInterface.addIndex('orders', {unique: false, fields: ['booking_status']})})
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("orders");

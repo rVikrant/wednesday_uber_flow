@@ -20,6 +20,7 @@ module.exports = {
             type: Sequelize.INTEGER(11),
             allowNull: false,
             primaryKey: true,
+            autoIncrement: true,
           },
           firstName: {
             field: "first_name",
@@ -34,6 +35,7 @@ module.exports = {
           email: {
             type: Sequelize.STRING(32),
             allowNull: false,
+            unique: true,
           },
           phoneNo: {
             type: Sequelize.STRING(32),
@@ -101,13 +103,18 @@ module.exports = {
             field: "access_token",
             type: Sequelize.STRING(64),
             allowNull: false,
-            unique: true,
           },
           newRide: {                  // to check driver canbe on 1 ride and can accept 1 more
             field: "new_ride",
             type: Sequelize.BOOLEAN,
             allowNull: false,
             defaultValue: false
+          },
+          dropOff: {
+            // if driver is on ride then need to save dropoff location
+            field: "drop_off",
+            type: Sequelize.GEOMETRY("POINT"),
+            allowNull: true,
           },
 
           // status key
@@ -128,9 +135,10 @@ module.exports = {
         },
         {
           tableName: "drivers",
-          timestamps: false,
+          timestamps: false
         }
       )
+      .then(() => {return queryInterface.addIndex('drivers', {unique: false, fields: ['status']})})
       // .then(() => {
       //   return [
       //     queryInterface.addColumn("drivers", "new_ride",

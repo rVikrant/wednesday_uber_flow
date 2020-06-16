@@ -1,7 +1,7 @@
 # wednesday_uber_flow_task
 
 ### Pre-requisites
-    * node
+    * node - v13.12.0
 
 ### Set up
     * Clone repo from "https://github.com/rVikrant/wednesday_uber_flow.git"

@@ -83,36 +83,37 @@ module.exports = function (sequelize, DataTypes) {
         field: "on_duty",
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
       },
-      dropOff: {                    // if driver is on ride then need to save dropoff location
+      dropOff: {
+        // if driver is on ride then need to save dropoff location
         field: "drop_off",
         type: DataTypes.GEOMETRY("POINT"),
         allowNull: true,
       },
-      newRide: {                  // to check driver canbe on 1 ride and can accept 1 more
+      newRide: {
+        // to check driver canbe on 1 ride and can accept 1 more
         field: "new_ride",
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
       },
-    //   latitude: {
-    //     type: DataTypes.FLOAT(7, 4),
-    //     allowNull: false,
-    //     validate: { min: -90, max: 90 },
-    //     defaultValue: 0.0,
-    //   },
-    //   longitude: {
-    //     type: DataTypes.FLOAT(7, 4),
-    //     allowNull: false,
-    //     validate: { min: -180, max: 180 },
-    //     defaultValue: 0.0,
-    //   },
+      //   latitude: {
+      //     type: DataTypes.FLOAT(7, 4),
+      //     allowNull: false,
+      //     validate: { min: -90, max: 90 },
+      //     defaultValue: 0.0,
+      //   },
+      //   longitude: {
+      //     type: DataTypes.FLOAT(7, 4),
+      //     allowNull: false,
+      //     validate: { min: -180, max: 180 },
+      //     defaultValue: 0.0,
+      //   },
       accessToken: {
         field: "access_token",
         type: DataTypes.STRING(64),
         allowNull: false,
-        unique: true,
       },
 
       // status key
@@ -134,6 +135,16 @@ module.exports = function (sequelize, DataTypes) {
     {
       tableName: "drivers",
       timestamps: false,
+      indexes: [
+        {
+          unique: true,
+          fields: ["email"],
+        },
+        {
+          unique: false,
+          fields: ["status"]
+        }
+      ],
     }
   );
 

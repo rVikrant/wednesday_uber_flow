@@ -47,7 +47,6 @@ const login = async (payload) => {
       };
 
       return {
-        userData,
         accessToken: await generateToken(tokenData, AUTH_STRATEGIES.USER),
       };
     } else {
